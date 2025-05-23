@@ -54,10 +54,12 @@ class MusicPlayer:
             return
 
         try: 
-            if search.startswith("https://" or "www"):
-                info = ytdl.extract_info(search, download=False)
-            else: 
-                info = ytdl.extract_info(f"ytsearch:{search}", download=False)["entries"][0]
+            loop = asyncio.get_event_loop()
+            if search.startswith("https://") or search.startswith("www"):
+                info = await loop.run_in_executor(None, lambda: ytdl.extract_info(search, download=False))
+            else:
+                data = await loop.run_in_executor(None, lambda: ytdl.extract_info(f"ytsearch:{search}", download=False))
+                info = data["entries"][0]
         except Exception as e:
             await ctx.send(f"Hubo un error al buscar la canción :( {e}")
             return
@@ -85,8 +87,10 @@ class MusicPlayer:
     
     async def _start_playback(self, ctx, url, title, webpage):
         voice = ctx.guild.voice_client
-        source = FFmpegOpusAudio(url, before_options="-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5", options="-vn")
 
+        loop = asyncio.get_event_loop()
+        source = await loop.run_in_executor(None, lambda: FFmpegOpusAudio(url, before_options="-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5", options="-vn"))    
+        
         def after_play(error):
             fut = asyncio.run_coroutine_threadsafe(self._play_next(ctx), self.bot.loop)
             try:
