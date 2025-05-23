@@ -87,6 +87,15 @@ async def clear(ctx):
 async def stop(ctx):
     await player.stop(ctx)
 
+@bot.command()
+async def remove(ctx, index: int):
+    await player.remove(ctx, index)
+
+@bot.command()
+async def shuffle(ctx):
+    await player.shuffle(ctx)
+
+
 bot.run(load_token.discord())
 
 

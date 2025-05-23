@@ -1,4 +1,5 @@
 import discord
+import random
 import asyncio
 from discord.ext import commands
 from discord import FFmpegOpusAudio
@@ -138,7 +139,7 @@ class MusicPlayer:
         else:
             await ctx.send("No estoy reproduciendo nada.")
     
-    async def skip(self, ctx): 
+    async def stop(self, ctx): 
         voice = ctx.guild.voice_client
         if voice and (voice.is_playing() or voice.is_paused()):
             voice.stop()
@@ -152,7 +153,7 @@ class MusicPlayer:
             queue.clear()
             await ctx.send("He limpiado la cola. 🗑️")
         else:
-            await ctx.send("No hay canciones en la cola.")
+            await ctx.send("No hay canciones en la cola.")        
 
     async def skip(self, ctx):
         voice = ctx.guild.voice_client
@@ -161,6 +162,22 @@ class MusicPlayer:
             await ctx.send("Saltando canción... ⏭️")
         else:
             await ctx.send("No hay música para saltar.")
+
+    async def remove(self, ctx, index: int):
+        queue = self.get_queue(ctx.guild.id)
+        if queue and 0 < index <= len(queue):
+            removed_song = queue.pop(index - 1)
+            await ctx.send(f"Se ha eliminado la canción: {removed_song} ❌")
+        else:
+            await ctx.send("Índice inválido o cola vacía.")
+
+    async def shuffle(self, ctx):
+        queue = self.get_queue(ctx.guild.id)
+        if queue:
+            random.shuffle(queue)
+            await ctx.send("He mezclado la cola. 🔀")
+        else:
+            await ctx.send("No hay canciones en la cola.")    
 
     async def show_queue(self, ctx):
         queue = self.get_queue(ctx.guild.id)
