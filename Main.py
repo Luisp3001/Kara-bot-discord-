@@ -39,7 +39,7 @@ async def on_ready():
 
     try:
         await bot.load_extension("src.Gemini")
-        print("Gemini loaded successfully.")
+        print("Gemini cargado exitosamente.")
     except Exception as e:
         print(f"Error cargando Gemini: {e}")
 

@@ -29,7 +29,7 @@ class GeminiCog(commands.Cog):
     def __init__(self, bot: commands.Bot, gemini_api_key: str):
         self.bot = bot
         self.gemini_service = Gemini(gemini_api_key)
-        print("Gemini service initialized.")
+        print("Servicio Gemini inicializado correctamente.")
         
     @commands.command()
     async def gemini(self, ctx, *, prompt: str):
