@@ -20,6 +20,8 @@
 - **Comandos de musica:** play, pause, resume, skip, stop, list
 - **Comandos de gemini:** gemini
 
+---
+
 ## ⚙️ Tecnologías utilizadas
 
 - [Python 3.x](https://www.python.org/)
@@ -29,3 +31,7 @@
 - [FFmpeg](https://ffmpeg.org/) para procesamiento de audio
 
 ---
+
+## Como usar: 
+
+- Simplemente clona el repositorio, instala dependencias, configura los TOKEN discord y Gemini (En caso de usarlo) y ejecuta Main.py
