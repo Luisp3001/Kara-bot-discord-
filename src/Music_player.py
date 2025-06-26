@@ -26,18 +26,7 @@ class MusicPlayer:
 
     def get_queue(self, guild_id):
         return self.queues.setdefault(guild_id, [])
-    
-    async def join(self, ctx):
-        if ctx.voice_client is None:
-            if ctx.author.voice:
-                channel = ctx.author.voice.channel
-                await channel.connect()
-                print(f"Conectada a {channel}")
-            else:
-                await ctx.send("Necesitas estar en un canal de voz para que me una.")
-        else:
-            await ctx.send("Ya estoy en un canal de voz.")
-        
+           
     async def leave(self, ctx):
         voice = ctx.guild.voice_client
         if voice:
@@ -48,11 +37,16 @@ class MusicPlayer:
             await ctx.send("No estoy conectada a ningún canal de voz.")
 
     async def play(self, ctx, search: str):
-        voice = ctx.guild.voice_client
-        if not voice:
-            await ctx.send("No estoy en un canal de voz. Usa 'join' para unirte.")
-            return
-
+        if ctx.voice_client is None:
+            if ctx.author.voice:
+                channel = ctx.author.voice.channel
+                await channel.connect()
+                print(f"Conectada a {channel}")
+            else:
+                await ctx.send("Necesitas estar en un canal de voz para que me una.")
+                return
+            
+        voice = ctx.guild.voice_client    
         try: 
             loop = asyncio.get_event_loop()
             if search.startswith("https://") or search.startswith("www"):

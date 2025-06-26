@@ -4,6 +4,7 @@ from discord.ext import commands
 import src.Load_token as load_token
 import nacl
 
+
 intents = discord.Intents().all()
 client = discord.Client(intents=intents)
 
@@ -31,7 +32,6 @@ async def help_command(ctx):
     )
     await ctx.send(embed=embed)
 
-
 @bot.event
 async def on_ready():
     print(f"Conectado como {bot.user.name} ({bot.user.id})")
@@ -50,10 +50,6 @@ async def on_command_error(ctx, error):
     else:
         print(f"Error en el comando {ctx.command}: {error}")
         await ctx.send(f"Se produjo un error: {error}")
-
-@bot.command()
-async def join(ctx):
-    await player.join(ctx)
 
 @bot.command()
 async def leave(ctx):
