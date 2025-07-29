@@ -1,9 +1,8 @@
 import discord
 from src.Music_player import MusicPlayer
 from discord.ext import commands
-import src.Load_token as load_token
+import Load_token as load_token
 import nacl
-
 
 intents = discord.Intents().all()
 client = discord.Client(intents=intents)

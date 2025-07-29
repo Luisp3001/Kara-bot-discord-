@@ -1,9 +1,7 @@
-import discord
-import os
 import asyncio
 from discord.ext import commands
 import google.generativeai as genai
-import src.Load_token as load_token
+import Load_token as load_token
 
 class Gemini:
     def __init__(self, api_key: str):
@@ -49,7 +47,7 @@ class GeminiCog(commands.Cog):
     @commands.command()
     async def gemini_status(self, ctx: commands.Context):
         if self.gemini_service.model is not None:
-            await ctx.send("El modelo Gemini está disponible y listo para usar.")
+            await ctx.send("El modeError cargando Gemini: Extension 'src.Gemini' raised an error: ModuleNotFoundError: No module named 'Load_token'lo Gemini está disponible y listo para usar.")
         else:
             await ctx.send("El modelo Gemini no está disponible en este momento.")
 
