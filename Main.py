@@ -1,8 +1,9 @@
 import discord
 from src.Music_player import MusicPlayer
 from discord.ext import commands
-import Load_token as load_token
+import src.Load_token as load_token
 import nacl
+
 
 intents = discord.Intents().all()
 client = discord.Client(intents=intents)
@@ -21,8 +22,12 @@ async def help_command(ctx):
             "Fui diseñada para asistir, interactuar y adaptarme a sus necesidades dentro de este servidor.\n"
             "Como androide de asistencia avanzada, integro múltiples funciones optimizadas para mejorar su experiencia de usuario.\n\n"
             "🎵 **Reproductor de música:** Sistema de reproducción fluido y de alta fidelidad.\n"
+            "\t **Como funciona: ** usa el prefijo `kara` seguido del comando, ejemplo: kara play <nombre_canción>\n"
+            "\t **Comandos disponibles: ** play, pause, resume, stop, skip, shuffle, list, remove.\n"         
             "🗣️ **Texto a voz (TTS):** Convierta texto en voz clara y precisa.\n"
+            "\t  **Como funciona: ** usa el prefijo `kara` seguido del comando, ejemplo: kara tts <mensaje>\n"
             "🌐 **Gemini IA conectada:** Para resolver dudas, generar ideas y conversar.\n"
+            "\t **Como funciona: ** usa el prefijo `kara` seguido del comando, ejemplo: kara gemini <prompt>\n"
             "🧠 **IA local (offline):** Inteligencia autónoma sin conexión.\n\n"
             "Estoy aquí para servir.\n"
             "*\"Mi misión es ayudar, comprender... y evolucionar.\"*"
