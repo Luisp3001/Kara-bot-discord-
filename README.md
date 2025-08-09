@@ -16,8 +16,8 @@
 ## Comandos disponibles
 
 - **Prefijo de bot** kara
-- **Comandos basicos:** join, leave
-- **Comandos de musica:** play, pause, resume, skip, stop, list
+- **Comandos basicos:** leave
+- **Comandos de musica:** play, pause, resume, skip, stop, list, shuffle, remove
 - **Comandos de gemini:** gemini
 
 ---
