@@ -1,7 +1,8 @@
 import asyncio
 from discord.ext import commands
 import google.generativeai as genai
-import Load_token as load_token
+from src.db_files import permissions as perm
+from src.load_tkn import load_token
 
 class Gemini:
     def __init__(self, api_key: str):
@@ -34,7 +35,11 @@ class GeminiCog(commands.Cog):
         if not prompt:
             await ctx.send("Por favor, proporciona un prompt para Gemini.")
             return
-            
+
+        if perm.get_permission(ctx.author.id) is None:
+            await ctx.send("No tienes permisos para usar este comando.")
+            return
+
         async with ctx.typing():
             response_text = await self.gemini_service.generate_response(prompt)
             if len(response_text) > 2000:

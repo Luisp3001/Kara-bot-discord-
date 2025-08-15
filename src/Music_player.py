@@ -83,7 +83,7 @@ class MusicPlayer:
         voice = ctx.guild.voice_client
 
         loop = asyncio.get_event_loop()
-        source = await loop.run_in_executor(None, lambda: FFmpegOpusAudio(url, before_options="-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5", options="-vn"))    
+        source = await loop.run_in_executor(None, lambda: FFmpegOpusAudio(url, before_options="-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5", options="-vn -ar 48000"))    
         
         def after_play(error):
             fut = asyncio.run_coroutine_threadsafe(self._play_next(ctx), self.bot.loop)
